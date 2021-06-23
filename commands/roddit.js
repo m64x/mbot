@@ -29,6 +29,12 @@ module.exports = {
                     message.channel.send(textembed)
                 }
 
+
+
+                while (!index.preview.images[0]) {
+                    var index = response.data.children[Math.floor(Math.random() * 99) + 1].data;
+                  }
+
                 var image = index.preview.images[0].source.url.replace('&amp;', '&')
                 var title = index.title
                 var link = 'https://reddit.com' + index.permalink

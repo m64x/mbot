@@ -1,5 +1,6 @@
 const https = require('https');
 const Discord = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const url = 'https://www.reddit.com/r/romania/hot/.json?limit=100'
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
                 if (index.post_hint !== 'image') {
 
                     var text = index.selftext
-                    const textembed = new Discord.MessageEmbed()
+                    const textembed = new MessageEmbed()
                         .setTitle(subRedditName)
                         .setColor(9384170)
                         .setDescription(`[${title}](${link})\n\n${text}`)
@@ -50,7 +51,7 @@ module.exports = {
                     message.channel.send(textembed)
                 }
                 console.log(image);
-                const imageembed = new Discord.MessageEmbed()
+                const imageembed = new MessageEmbed()
                     .setTitle(subRedditName)
                     .setImage(image)
                     .setColor(9384170)

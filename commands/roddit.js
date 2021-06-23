@@ -30,6 +30,11 @@ module.exports = {
                     message.channel.send(textembed)
                 }
 
+
+                if (!index.preview) {
+                    message.channel.send('This may take a while...');
+                }
+
                 while (!index.preview) {
                     var index = response.data.children[Math.floor(Math.random() * 99) + 1].data;
                   }

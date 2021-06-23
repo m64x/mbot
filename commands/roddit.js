@@ -42,7 +42,7 @@ module.exports = {
                 var subRedditName = index.subreddit_name_prefixed
 
                 if (index.post_hint !== 'image') {
-                    const textembed = new Discord.RichEmbed()
+                    const textembed = new MessageEmbed()
                         .setTitle(subRedditName)
                         .setColor(9384170)
                         .setDescription(`[${title}](${link})\n\n${text}`)

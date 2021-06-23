@@ -30,9 +30,7 @@ module.exports = {
                     message.channel.send(textembed)
                 }
 
-
-
-                while (!index.preview.images[0]) {
+                while (!index.preview) {
                     var index = response.data.children[Math.floor(Math.random() * 99) + 1].data;
                   }
 

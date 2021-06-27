@@ -1,8 +1,9 @@
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 
-const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("../config.json"));
+// const fs = require('fs');
+// const config = JSON.parse(fs.readFileSync("../config.json"));
+const config = require('../config.json');
 const f = require('../functions');
 
 module.exports = {

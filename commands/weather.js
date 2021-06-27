@@ -82,8 +82,8 @@ module.exports = {
 					.setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
 					message.channel.send(embed);
 					message.channel.send();
-					let sunrise = new Date(w.sys.sunrise);
-					let sunset = new Date(w.sys.sunset);
+					let sunrise = new Date(w.sys.sunrise*1000);
+					let sunset = new Date(w.sys.sunset*1000);
 					message.channel.send(sunrise + ' ' + sunset);
 					console.log(result);
 				} catch (e) {

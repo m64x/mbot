@@ -85,9 +85,11 @@ module.exports = {
 					message.channel.send();
 					let sunrise = new Date(w.sys.sunrise*1000);
 					let sunset = new Date(w.sys.sunset*1000);
+					let sunriseX = new Date(sunrise + w.timezoneOffset);
 					// message.channel.send(sunrise + ' ' + sunset);
-					sunrise.setHours(sunrise.getHours() + (w.timezoneOffset/60));
-					message.channel.send('Sunrise: ' + sunrise.getHours() + ':' + sunrise.getMinutes());
+					// sunrise.setHours(sunrise.getHours() + (w.timezoneOffset/60));
+					// message.channel.send('Sunrise: ' + sunrise.getHours() + ':' + sunrise.getMinutes());
+					message.channel.send(sunriseX.getHours() + ':' + sunriseX.getMinutes());
 					console.log(result);
 				} catch (e) {
 					console.error(e);

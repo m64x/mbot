@@ -2,7 +2,7 @@ const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 
 const fs = require('fs');
-const config = JSON.parse(fs.readFileSync("..config.json"));
+const config = JSON.parse(fs.readFileSync("../config.json"));
 const f = require('../functions');
 
 module.exports = {
@@ -15,6 +15,8 @@ module.exports = {
 			message.reply('!weather <city>');
 			return;
 		}
+
+		f.debug(config['version']);
 		
 		const oras = args.join(' ');
 		const key = process.env['weather_key'];

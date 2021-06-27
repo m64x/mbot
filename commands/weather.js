@@ -58,21 +58,21 @@ module.exports = {
 				
 				const embed = new MessageEmbed()
 				.setColor('#0099ff')
-				.setTitle('Vremea in ' + w.name + ', ' + w.sys.country)
-				.setAuthor('mBot', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+				.setTitle('Weather in ' + w.name + ', ' + w.sys.country)
+				.setAuthor('mBot', 'https://i.imgur.com/4FuW9or.png', 'https://github.com/m64x/mbot')
 				.setDescription(`${weatherFormat(w.main.temp)}`)
 				.setThumbnail(w.weather.icon)
 				.addFields(
-					{ name: 'Vremea:', value: `${w.weather.description}`, inline: true},
-					{ name: 'Se simte ca:', value: `${weatherFormat(w.main.feels_like)} `, inline: true},
-					{ name: 'Min:', value: `${weatherFormat(w.main.temp_min)} `, inline: true},
-					{ name: 'Max:', value: `${weatherFormat(w.main.temp_max)} `, inline: true},
-					{ name: 'Presiune atm.:', value: `${w.main.pressure}`, inline: true},
-					{ name: 'Umititate:', value: `${w.main.humidity}`, inline: true},
-					{ name: 'Vânt:', value: `Viteză: ${w.wind.speed}`, inline: true },
+					{ name: 'Weather', value: `${w.weather.description}`, inline: true},
+					{ name: 'Feels like', value: `${weatherFormat(w.main.feels_like)} `, inline: true},
+					{ name: 'Min', value: `${weatherFormat(w.main.temp_min)} `, inline: true},
+					{ name: 'Max', value: `${weatherFormat(w.main.temp_max)} `, inline: true},
+					{ name: 'Atm. pressure', value: `${w.main.pressure}`, inline: true},
+					{ name: 'Humidity', value: `${w.main.humidity}`, inline: true},
+					{ name: 'Wind', value: `${w.wind.speed} km/h`, inline: true },
 					)
 					.setTimestamp()
-					.setFooter('mBot ftw', 'https://i.imgur.com/wSTFkRM.png');
+					.setFooter('mBot ftw', 'https://i.imgur.com/4FuW9or.png');
 					message.channel.send(embed);
 					console.log(result);
 				} catch (e) {

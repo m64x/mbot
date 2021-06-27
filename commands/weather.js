@@ -64,6 +64,9 @@ module.exports = {
 					return value.toFixed(1) + ' °C';
 				}
 				
+				let sunrise = new Date(w.sys.sunrise * 1000 + (w.timezoneOffset * 1000));
+				let sunset = new Date(w.sys.sunset * 1000 + (w.timezoneOffset * 1000));
+
 				const embed = new MessageEmbed()
 				.setColor('#0099ff')
 				.setTitle('Weather in ' + w.name + ', ' + w.sys.country)
@@ -78,19 +81,12 @@ module.exports = {
 					{ name: 'Atm. pressure', value: `${w.main.pressure}`, inline: true},
 					{ name: 'Humidity', value: `${w.main.humidity}`, inline: true},
 					{ name: 'Wind', value: `${w.wind.speed} km/h`, inline: true },
+					{name: 'Sunrise', value: sunrise.getHours() + ':' + sunrise.getMinutes(), inline: true},
+					{name: 'Sunset', value: sunset.getHours() + ':' + sunset.getMinutes(), inline: true}
 					)
 					.setTimestamp()
 					.setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
 					message.channel.send(embed);
-					message.channel.send();
-					let sunrise = new Date(w.sys.sunrise*1000);
-					let sunset = new Date(w.sys.sunset*1000);
-					// let sunriseX = new Date(sunrise + w.timezoneOffset);
-					sunrise.setSeconds(sunrise.getSeconds + w.timezoneOffset);
-					// message.channel.send(sunrise + ' ' + sunset);
-					// sunrise.setHours(sunrise.getHours() + (w.timezoneOffset/60));
-					// message.channel.send('Sunrise: ' + sunrise.getHours() + ':' + sunrise.getMinutes());
-					message.channel.send(sunrise.getHours() + ':' + sunrise.getMinutes());
 					console.log(result);
 				} catch (e) {
 					console.error(e);

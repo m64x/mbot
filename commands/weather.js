@@ -60,7 +60,7 @@ module.exports = {
 				.setColor('#0099ff')
 				.setTitle('Vremea in ' + w.name + ', ' + w.sys.country)
 				.setAuthor('mBot', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
-				.setDescription(`${w.main.temp} ${grade}`)
+				.setDescription(`${weatherFormat(w.main.temp)}`)
 				.setThumbnail(w.weather.icon)
 				.addFields(
 					{ name: 'Vremea:', value: `${w.weather.description}`, inline: true},

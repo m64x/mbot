@@ -16,19 +16,17 @@ module.exports = {
 			message.reply('!weather <city>');
 			return;
 		}
-
-		f.debug(config['version']);
 		
-		const oras = args.join(' ');
+		const city = args.join(' ');
 		const key = process.env['weather_key'];
 		const units = 'metric';
-		const url = `https://api.openweathermap.org/data/2.5/weather?q=${oras}&units=${units}&appid=${key}`;
+		const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${key}`;
 		
 		async function foo() {
 			try {
-				const res = await fetch(url);
-				const result = await res.json();
-				
+				const fetchWeather = await fetch(url);
+				const result = await fetchWeather.json();
+
 				f.debug(result);
 
 				let w = {
@@ -85,7 +83,7 @@ module.exports = {
 				} catch (e) {
 					console.error(e);
 					message.channel.send({files: [process.env.KT]});
-					message.reply('Nu exista orasu\' asta, boule!');
+					message.reply('Nu exista cityu\' asta, boule!');
 				}
 			}
 			let vreme = foo();

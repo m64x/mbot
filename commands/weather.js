@@ -85,7 +85,8 @@ module.exports = {
 					message.channel.send();
 					let sunrise = new Date(w.sys.sunrise*1000);
 					let sunset = new Date(w.sys.sunset*1000);
-					let sunriseX = new Date(sunrise + w.timezoneOffset);
+					// let sunriseX = new Date(sunrise + w.timezoneOffset);
+					let sunriseX = sunrise.setSeconds(sunrise.getSeconds + timezoneOffset);
 					// message.channel.send(sunrise + ' ' + sunset);
 					// sunrise.setHours(sunrise.getHours() + (w.timezoneOffset/60));
 					// message.channel.send('Sunrise: ' + sunrise.getHours() + ':' + sunrise.getMinutes());

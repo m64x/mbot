@@ -1,6 +1,8 @@
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 
+const f = require('../functions');
+
 module.exports = {
 	name: 'weather',
 	description: 'weather',
@@ -22,8 +24,8 @@ module.exports = {
 				const res = await fetch(url);
 				const result = await res.json();
 				
-				
-				console.log(result);
+				f.debug(result);
+
 				let w = {
 					weather: {
 						main: result.weather[0]['main'],

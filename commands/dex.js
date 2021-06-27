@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const config = require('../config.json');
 
-const functions = require('../functions');
+const f = require('../functions');
 
 const paginationEmbed = require('discord.js-pagination');
 const { MessageEmbed } = require('discord.js');
@@ -36,7 +36,7 @@ module.exports = {
                     message.channel.send('Cuvantul zilei: `'+result.requested.record.word+'`. \nDefinitie: ' + result.requested.record.definition.internalRep);
                     message.channel.send(result.requested.record.image);
                 } else {
-					functions.debug(result.definitions[0].internalRep);
+					f.debug(result.definitions[0].internalRep);
 
                     const definitionsCount = result.definitions.length;
 

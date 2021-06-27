@@ -56,6 +56,7 @@ module.exports = {
 						sunrise: result.sys.sunrise,
 						sunset: result.sys.sunset
 					},
+					timezoneOffset: result.timezone,
 					name: result.name
 				};
 				
@@ -84,7 +85,9 @@ module.exports = {
 					message.channel.send();
 					let sunrise = new Date(w.sys.sunrise*1000);
 					let sunset = new Date(w.sys.sunset*1000);
-					message.channel.send(sunrise + ' ' + sunset);
+					// message.channel.send(sunrise + ' ' + sunset);
+					let sunriseHours = sunrise.setHours(sunrise.getHours() + w.timezoneOffset);
+					message.channel.send('Sunrise: ' + sunriseHours);
 					console.log(result);
 				} catch (e) {
 					console.error(e);

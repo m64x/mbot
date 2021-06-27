@@ -52,7 +52,9 @@ module.exports = {
 						all: result.clouds.all
 					},
 					sys: {
-						country: result.sys.country
+						country: result.sys.country,
+						sunrise: result.sys.sunrise,
+						sunset: result.sys.sunset
 					},
 					name: result.name
 				};
@@ -79,11 +81,15 @@ module.exports = {
 					.setTimestamp()
 					.setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
 					message.channel.send(embed);
+					message.channel.send();
+					let sunrise = new Date(w.sys.sunrise);
+					let sunset = new Date(w.sys.sunset);
+					message.channel.send(sunrise + ' ' + sunset);
 					console.log(result);
 				} catch (e) {
 					console.error(e);
 					message.channel.send({files: [process.env.KT]});
-					message.reply('Nu exista cityu\' asta, boule!');
+					message.reply('This city does not exist!');
 				}
 			}
 			let vreme = foo();

@@ -1,6 +1,7 @@
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
 
+const config = JSON.parse(fs.readFileSync("../config.json"));
 const f = require('../functions');
 
 module.exports = {
@@ -74,7 +75,7 @@ module.exports = {
 					{ name: 'Wind', value: `${w.wind.speed} km/h`, inline: true },
 					)
 					.setTimestamp()
-					.setFooter('mBot ftw', 'https://i.imgur.com/4FuW9or.png');
+					.setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
 					message.channel.send(embed);
 					console.log(result);
 				} catch (e) {

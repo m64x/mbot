@@ -52,8 +52,6 @@ module.exports = {
 					name: result.name
 				};
 				
-				const grade = '°C';
-
 				function weatherFormat(value) {
 					return value.toFixed(1) + ' °C';
 				}
@@ -66,9 +64,9 @@ module.exports = {
 				.setThumbnail(w.weather.icon)
 				.addFields(
 					{ name: 'Vremea:', value: `${w.weather.description}`, inline: true},
-					{ name: 'Se simte ca:', value: `${w.main.feels_like.toFixed(1)} °C}`, inline: true},
-					{ name: 'Min:', value: `${w.main.temp_min.toFixed(1)} °C}`, inline: true},
-					{ name: 'Max:', value: `${w.main.temp_max.toFixed(1)} °C}`, inline: true},
+					{ name: 'Se simte ca:', value: `${weatherFormat(w.main.feels_like)} `, inline: true},
+					{ name: 'Min:', value: `${weatherFormat(w.main.temp_min)} `, inline: true},
+					{ name: 'Max:', value: `${weatherFormat(w.main.temp_max)} `, inline: true},
 					{ name: 'Presiune atm.:', value: `${w.main.pressure}`, inline: true},
 					{ name: 'Umititate:', value: `${w.main.humidity}`, inline: true},
 					{ name: 'Vânt:', value: `Viteză: ${w.wind.speed}`, inline: true },

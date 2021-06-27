@@ -9,6 +9,7 @@ const f = require('../functions');
 module.exports = {
 	name: 'weather',
 	description: 'weather',
+	aliases: ['w'],
 	args: true,
 	usage: '<city>',
 	execute(message, args) {

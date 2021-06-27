@@ -53,6 +53,10 @@ module.exports = {
 				};
 				
 				const grade = '°C';
+
+				function weatherFormat(value) {
+					return value.toFixed(1) + ' °C';
+				}
 				
 				const embed = new MessageEmbed()
 				.setColor('#0099ff')
@@ -61,13 +65,13 @@ module.exports = {
 				.setDescription(`${w.main.temp} ${grade}`)
 				.setThumbnail(w.weather.icon)
 				.addFields(
-					{ name: 'Vremea:', value: `${w.weather.description.toFixed(1)}`, inline: true},
+					{ name: 'Vremea:', value: `${w.weather.description}`, inline: true},
 					{ name: 'Se simte ca:', value: `${w.main.feels_like.toFixed(1)} °C}`, inline: true},
 					{ name: 'Min:', value: `${w.main.temp_min.toFixed(1)} °C}`, inline: true},
 					{ name: 'Max:', value: `${w.main.temp_max.toFixed(1)} °C}`, inline: true},
-					{ name: 'Presiune atm.:', value: `${w.main.pressure.toFixed(1)}`, inline: true},
-					{ name: 'Umititate:', value: `${w.main.humidity.toFixed(1)}`, inline: true},
-					{ name: 'Vânt:', value: `Viteză: ${w.wind.speed.toFixed(1)}`, inline: true },
+					{ name: 'Presiune atm.:', value: `${w.main.pressure}`, inline: true},
+					{ name: 'Umititate:', value: `${w.main.humidity}`, inline: true},
+					{ name: 'Vânt:', value: `Viteză: ${w.wind.speed}`, inline: true },
 					)
 					.setTimestamp()
 					.setFooter('mBot ftw', 'https://i.imgur.com/wSTFkRM.png');

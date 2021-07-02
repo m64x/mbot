@@ -20,6 +20,7 @@ module.exports = {
             var link = res.links[i];
             console.log(link.title + ' - ' + link.href)
             console.log(link.description + "\n")
+            message.channel.send(link.href);
           }
          
           if (nextCounter < 4) {
@@ -29,6 +30,5 @@ module.exports = {
         })
         
 
-  
     }
   };

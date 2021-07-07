@@ -1,4 +1,4 @@
-let google = require('google');
+const  googleIt = require('google-it');
 
 module.exports = {
     name: 'google',
@@ -10,25 +10,14 @@ module.exports = {
             return;
           }
  
-        google.resultsPerPage = 5;
-        var nextCounter = 0;
-         
-        google(args.join('+'), function (err, res){
-          if (err) console.error(err);
-         
-          for (var i = 0; i < res.links.length; ++i) {
-            var link = res.links[i];
-            console.log(link.title + ' - ' + link.href)
-            console.log(link.description + "\n")
-            message.channel.send(link.href);
-          }
-         
-          if (nextCounter < 4) {
-            nextCounter += 1
-            if (res.next) res.next()
-          }
-        })
-        
+          googleIt({'query': args.join()}).then(results => {
+            console.log(results);
+            message.channel.send(JSON.stringify(results));
+          }).catch(e => {
+            console.log('[ERROR] ' + e);
+            // any possible errors that might have occurred (like no Internet connection)
+          });
+                  
 
     }
   };

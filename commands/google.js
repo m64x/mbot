@@ -14,7 +14,7 @@ module.exports = {
     
     // async function foo() {
     // try {
-    const embed = new MessageEmbed()
+    let embed = new MessageEmbed()
     .setColor('#0099ff')
     .setTitle('Search results for ' + args.join(' '))
     .setAuthor('mBot', 'https://i.imgur.com/4FuW9or.png', 'https://github.com/m64x/mbot')

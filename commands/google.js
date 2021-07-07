@@ -1,4 +1,5 @@
 const googleIt = require('google-it');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'google',
@@ -12,14 +13,25 @@ module.exports = {
 
     // async function foo() {
       // try {
-        googleIt({'query': args.join(" "), 'disableConsole': true}).then(results => {
+        const embed = new MessageEmbed()
+				.setColor('#0099ff')
+				.setTitle('Search results for ' + args.join(' '))
+				.setAuthor('mBot', 'https://i.imgur.com/4FuW9or.png', 'https://github.com/m64x/mbot')
+				.setDescription()
+				.addFields(
+					{ name: 'Weather', value: `${w.weather.description}`, inline: true},
+					)
+					.setTimestamp()
+					.setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
+
+        googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
           console.log(results);
           results.forEach(function(item, index) { 
             console.log(item);
-            message.channel.send(item.link);
+            embed.addField({name: item.title, value: item.link, inline: true});
             // embed.addField((index + 1) + ". " + item.title, "<" + item.link + ">");
           });
-          message.channel.send(JSON.stringify(results));
+          message.channel.send(embed);
         }).catch(e => {
           console.log('[ERROR] ' + e);
           // any possible errors that might have occurred (like no Internet connection)

@@ -64,20 +64,20 @@ module.exports = {
 						
 						let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
 						
-						
 						message.channel.send(`Search results for \`${args.join(' ')}\`:`);
-						message.channel.send(pages[page]).then(msg => {
+						
+						message.channel.send(pages[0]).then(msg => {
 							msg.react(backArrowEmoji);
 							msg.react(forwardArrowEmoji).then(r => {
-								
 								const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
 								const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
-								const backwards = msg.createReactionCollector(backwardsFilter, { timer: 6000 });
-								const forwards = msg.createReactionCollector(forwardsFilter, { timer: 6000 });
+								const backwards = msg.createReactionCollector(backwardsFilter, { timer: 60000 });
+								const forwards = msg.createReactionCollector(forwardsFilter, { timer: 60000 });
 								
 								backwards.on('collect', (r, u) => {
-									if (page === 1)
-									return r.users.remove(r.users.cache.filter(u => u === message.author).first());
+									if (page === 1) {
+										return r.users.remove(r.users.cache.filter(u => u === message.author).first());
+									}
 									page--;
 									m = `${pages[page - 1]} \n Page ${page} of ${pages.length}`;
 									msg.edit(pages[page]);
@@ -85,8 +85,9 @@ module.exports = {
 								});
 								
 								forwards.on('collect', (r, u) => {
-									if (page === pages.length)
-									return r.users.remove(r.users.cache.filter(u => u === message.author).first());
+									if (page === pages.length) {
+										return r.users.remove(r.users.cache.filter(u => u === message.author).first());
+									}
 									page++;
 									m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
 									msg.edit(pages[page - 1]);

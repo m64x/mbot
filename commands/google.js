@@ -9,9 +9,7 @@ module.exports = {
 	args: true,
 	usage: '!p (pagination|optional) <term>',
 	cooldown: 4,
-	execute(message, args) {	
-		console.log(args);
-		
+	execute(message, args) {			
 		if (args[0] !== '!p') {
 			let embed = new MessageEmbed()
 			.setColor('#0099ff')
@@ -22,7 +20,7 @@ module.exports = {
 			
 			googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 				results.forEach(function (item, index) {
-					embed.addField(item.title, item.link);
+					embed.addField(`[${item.title}](${item.link} 'Click here to open the link')`);
 				});
 				message.channel.send(embed);
 			}).catch(e => {
@@ -35,7 +33,7 @@ module.exports = {
 			let page = 0;
 			let x = [];
 			args.shift();
-
+			
 			async function foo() {
 				try {
 					await googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {

@@ -5,22 +5,20 @@ const config = require('../config.json');
 module.exports = {
   name: 'google',
   aliases: ['g', 'gagle'],
-  // cooldown: 5,
+  cooldown: 3,
   execute(message, args) {
     if (!args.length) {
       message.channel.send('!g <search term>');
       return;
     }
-    
-    // async function foo() {
-    // try {
+
     let embed = new MessageEmbed()
     .setColor('#0099ff')
-    .setTitle('Search results for ' + args.join(' '))
-    .setAuthor('mBot', 'https://i.imgur.com/4FuW9or.png', 'https://github.com/m64x/mbot')
+    .setTitle('Search results for `' + args.join(' ') + '`')
+    .setAuthor('mBot', config.botAvatar, 'https://github.com/m64x/mbot')
     .setDescription()
     .setTimestamp()
-    .setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
+    .setFooter(`mBot ${config['version']}`, config.botAvatar);
     
     googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
       console.log(results);
@@ -34,12 +32,6 @@ module.exports = {
       console.log('[ERROR] ' + e);
       // any possible errors that might have occurred (like no Internet connection)
     });
-    // } catch(e) {
-    // console.log(e);
-    // }
-    // };
-    
-    // foo();
     
   }
 };

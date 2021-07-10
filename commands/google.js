@@ -79,7 +79,7 @@ module.exports = {
 										return r.users.remove(r.users.cache.filter(u => u === message.author).first());
 									}
 									page--;
-									m = `${pages[page - 1]} \n Page ${page} of ${pages.length}`;
+									m = `${pages[page]} \n Page ${page} of ${pages.length}`;
 									msg.edit(pages[page]);
 									r.users.remove(r.users.cache.filter(u => u === message.author).first());
 								});
@@ -89,8 +89,8 @@ module.exports = {
 										return r.users.remove(r.users.cache.filter(u => u === message.author).first());
 									}
 									page++;
-									m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
-									msg.edit(pages[page - 1]);
+									m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
+									msg.edit(pages[page]);
 									r.users.remove(r.users.cache.filter(u => u === message.author).first());
 								});
 							});

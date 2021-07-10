@@ -20,7 +20,7 @@ module.exports = {
 			
 			googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 				results.forEach(function (item, index) {
-					embed.addField(`[${item.title}](${item.link} 'Click here to open the link')`, item.snippet);
+					embed.addField(item.title, item.snippet + '\n' + item.link);
 				});
 				message.channel.send(embed);
 			}).catch(e => {

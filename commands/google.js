@@ -58,14 +58,13 @@ module.exports = {
 							.setTitle(`# ${i}`)
 							.setAuthor('mBot', config.botAvatar, config.repository)
 							.setDescription(x[i])
-							.addField('test', 'test2')
 							.setTimestamp()
 							.setFooter(`mBot ${config.version}`, config.botAvatar);
 						}
 						
 						let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
-						
-						message.channel.send(pages[0]).then(msg => {
+
+						message.channel.send(pages[page]).then(msg => {
 							msg.react(backArrowEmoji);
 							msg.react(forwardArrowEmoji).then(r => {
 								

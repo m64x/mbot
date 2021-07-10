@@ -26,10 +26,10 @@ module.exports = {
 			let embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Search results for `' + args.join(' ') + '`')
-			.setAuthor('mBot', botAvatar, repository)
+			.setAuthor('mBot', config.botAvatar, config.repository)
 			.setDescription()
 			.setTimestamp()
-			.setFooter(`mBot ${config['version']}`, botAvatar);
+			.setFooter(`mBot ${config.version}`, config.botAvatar);
 			
 			googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 				results.forEach(function (item, index) {

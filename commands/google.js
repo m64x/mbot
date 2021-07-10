@@ -46,7 +46,7 @@ module.exports = {
 				googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
 					results.forEach(function(item, index) {
 						x[index] = item.title + " | " + item.link;
-						console.log('pages[0]: ' + x[index]]);
+						console.log('obj: ' + x[index]);
 						// message.channel.send(embed);
 					}).catch(e => {
 						console.log('[ERROR] ' + e);

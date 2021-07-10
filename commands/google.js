@@ -63,7 +63,9 @@ module.exports = {
 						}
 						
 						let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
-
+						
+						
+						message.channel.send(`Search results for \`${args.join(' ')}\`:`);
 						message.channel.send(pages[page]).then(msg => {
 							msg.react(backArrowEmoji);
 							msg.react(forwardArrowEmoji).then(r => {

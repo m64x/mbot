@@ -31,7 +31,6 @@ module.exports = {
 			
 			googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
 				results.forEach(function(item, index) {
-					console.log(item);
 					embed.addField(item.title, item.link);
 				});
 				message.channel.send(embed);
@@ -41,7 +40,7 @@ module.exports = {
 		} else {
 			let pages = [];
 			let page = 0;
-			
+
 			googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
 				results.forEach(function(item, index) {
 					pages[index] = new MessageEmbed()

@@ -50,7 +50,7 @@ module.exports = {
 						console.log('[ERROR] ' + e);
 					});
 					
-					for (i = 0; i < 10; i++) {
+					for (i = 0; i < x.length; i++) {
 						pages[i] = new MessageEmbed()
 						.setColor(embedColor)
 						.setTitle(`# ${index}`)

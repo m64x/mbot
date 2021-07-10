@@ -12,7 +12,8 @@ module.exports = {
 	usage: '!p (pagination|optional) <term>',
 	cooldown: 4,
 	execute(message, args) {	
-		if (args.length >= 2) {
+		console.log(args);
+		if (args.length > 1) {
 			if (args[0] === '!p') {
 				paginate = true;
 				args.shift();

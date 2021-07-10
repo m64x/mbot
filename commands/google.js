@@ -24,7 +24,7 @@ module.exports = {
       console.log(results);
       results.forEach(function(item, index) { 
         console.log(item);
-        embed.addField(item.title, item.link, true);
+        embed.addField(item.title, item.link);
         // embed.addField((index + 1) + ". " + item.title, "<" + item.link + ">");
       });
       message.channel.send(embed);

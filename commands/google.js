@@ -21,6 +21,7 @@ module.exports = {
 			googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 				results.forEach(function (item, index) {
 					embed.addField(item.title, item.snippet + '\n' + item.link);
+					embed.addField('\u200b', '\u200b');
 				});
 				message.channel.send(embed);
 			}).catch(e => {

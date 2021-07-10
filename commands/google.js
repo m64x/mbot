@@ -47,8 +47,6 @@ module.exports = {
 						results.forEach(function (item, index) {
 							x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
 							console.log('obj: ' + x[index]);
-						}).catch(e => {
-							console.log('[ERROR] ' + e);
 						});
 						
 						for (i = 0; i < x.length; i++) {

@@ -41,60 +41,63 @@ module.exports = {
 			let page = 0;
 			let x = [];
 			
-			try {
-				googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
-					results.forEach(function (item, index) {
-						x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
-						console.log('obj: ' + x[index]);
-					}).catch(e => {
-						console.log('[ERROR] ' + e);
-					});
-					
-					for (i = 0; i < x.length; i++) {
-						pages[i] = new MessageEmbed()
-						.setColor(embedColor)
-						.setTitle(`# ${index}`)
-						.setAuthor('mBot', botAvatar, repository)
-						.setDescription(x[i])
-						.addField('test', 'test2')
-						.setTimestamp()
-						.setFooter(`mBot ${config['version']}`, botAvatar);
-					}
-					
-					let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
-					
-					message.channel.send(pages[0]).then(msg => {
-						msg.react(backArrowEmoji);
-						msg.react(forwardArrowEmoji).then(r => {
-							
-							const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
-							const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
-							const backwards = msg.createReactionCollector(backwardsFilter, { timer: 6000 });
-							const forwards = msg.createReactionCollector(forwardsFilter, { timer: 6000 });
-							
-							backwards.on('collect', (r, u) => {
-								if (page === 1)
-								return r.users.remove(r.users.cache.filter(u => u === message.author).first());
-								page--;
-								m = `${pages[page - 1]} \n Page ${page} of ${pages.length}`;
-								msg.edit(pages[page]);
-								r.users.remove(r.users.cache.filter(u => u === message.author).first());
-							});
-							
-							forwards.on('collect', (r, u) => {
-								if (page === pages.length)
-								return r.users.remove(r.users.cache.filter(u => u === message.author).first());
-								page++;
-								m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
-								msg.edit(pages[page - 1]);
-								r.users.remove(r.users.cache.filter(u => u === message.author).first());
+			async function foo() {
+				try {
+					googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
+						results.forEach(function (item, index) {
+							x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
+							console.log('obj: ' + x[index]);
+						}).catch(e => {
+							console.log('[ERROR] ' + e);
+						});
+						
+						for (i = 0; i < x.length; i++) {
+							pages[i] = new MessageEmbed()
+							.setColor(embedColor)
+							.setTitle(`# ${index}`)
+							.setAuthor('mBot', botAvatar, repository)
+							.setDescription(x[i])
+							.addField('test', 'test2')
+							.setTimestamp()
+							.setFooter(`mBot ${config['version']}`, botAvatar);
+						}
+						
+						let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
+						
+						message.channel.send(pages[0]).then(msg => {
+							msg.react(backArrowEmoji);
+							msg.react(forwardArrowEmoji).then(r => {
+								
+								const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
+								const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
+								const backwards = msg.createReactionCollector(backwardsFilter, { timer: 6000 });
+								const forwards = msg.createReactionCollector(forwardsFilter, { timer: 6000 });
+								
+								backwards.on('collect', (r, u) => {
+									if (page === 1)
+									return r.users.remove(r.users.cache.filter(u => u === message.author).first());
+									page--;
+									m = `${pages[page - 1]} \n Page ${page} of ${pages.length}`;
+									msg.edit(pages[page]);
+									r.users.remove(r.users.cache.filter(u => u === message.author).first());
+								});
+								
+								forwards.on('collect', (r, u) => {
+									if (page === pages.length)
+									return r.users.remove(r.users.cache.filter(u => u === message.author).first());
+									page++;
+									m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
+									msg.edit(pages[page - 1]);
+									r.users.remove(r.users.cache.filter(u => u === message.author).first());
+								});
 							});
 						});
 					});
-				});
-			} catch(e) {
-				console.log(e);
+				} catch(e) {
+					console.log(e);
+				}
 			}
+			foo();
 			// else(pagination)
 		}
 	}

@@ -53,10 +53,10 @@ module.exports = {
 							.setColor(config.embedColor)
 							.setTitle(`#${i}. ${x[i].title}`)
 							.setURL(x[i].link)
-							.setAuthor('mBot', config.avatar, config.repository)
+							.setAuthor(config.name, config.avatar, config.repository)
 							.setDescription(x[i].snippet)
 							.setTimestamp()
-							.setFooter(`mBot ${config.version}`, config.avatar);
+							.setFooter(`${config.name} ${config.version}`, config.avatar);
 						}
 						
 						message.channel.send(`Search results for \`${args.join(' ')}\`:`);

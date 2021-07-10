@@ -1,8 +1,5 @@
 const fetch = require('node-fetch');
 const { MessageEmbed } = require('discord.js');
-
-// const fs = require('fs');
-// const config = JSON.parse(fs.readFileSync("../config.json"));
 const config = require('../config.json');
 const f = require('../functions');
 
@@ -69,9 +66,9 @@ module.exports = {
 				let sunset = new Date(w.sys.sunset * 1000 + (w.timezoneOffset * 1000));
 
 				const embed = new MessageEmbed()
-				.setColor('#0099ff')
+				.setColor(config.embedColor)
 				.setTitle('Weather in ' + w.name + ', ' + w.sys.country)
-				.setAuthor('mBot', 'https://i.imgur.com/4FuW9or.png', 'https://github.com/m64x/mbot')
+				.setAuthor(config.name, config.avatar, config.repository)
 				.setDescription(`${weatherFormat(w.main.temp)}`)
 				.setThumbnail(w.weather.icon)
 				.addFields(
@@ -86,7 +83,7 @@ module.exports = {
 					{name: 'Sunset', value: sunset.getHours() + ':' + sunset.getMinutes(), inline: true}
 					)
 					.setTimestamp()
-					.setFooter(`mBot ${config['version']}`, 'https://i.imgur.com/4FuW9or.png');
+					.setFooter(`${config.name} ${config.version}`, config.avatar);
 					message.channel.send(embed);
 					console.log(result);
 				} catch (e) {

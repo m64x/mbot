@@ -37,7 +37,7 @@ module.exports = {
                 f.debug(result.definitions[0].internalRep);
                 
                 const definitionsCount = result.definitions.length;
-
+                
                 if (definitionsCount) {
                     message.channel.send('Există un număr de **' + definitionsCount + ' definitii** pentru termenul **' + term + '**.');
                 }
@@ -48,15 +48,14 @@ module.exports = {
                     pages[i] = new MessageEmbed()
                     .setColor(config.embedColor)
                     .setTitle(`Definiția termenului **${term}**. ${i + 1}/5`)
-                    .setAuthor('mBot', 'https://i.imgur.com/wSTFkRM.png')
-                    .setDescription(result.definitions[i].internalRep)
+                    .setAuthor(config.name, config.avatar)
+                    .setDescription(result.definitions[i].internalRep.replace(/#|@|$/g,''))
                     .addField('Dicționar', result.definitions[i].sourceName, true)
                     .setTimestamp()
-                    .setFooter('mBot v0.1.0', 'https://i.imgur.com/wSTFkRM.png');
+                    .setFooter(`${config.name} ${config.version}`, config.avatar);
                 }
-                
+
                 let page = 0;
-                let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
                 
                 message.channel.send(pages[0]).then(msg => {
                     msg.react(config.backEmoji);
@@ -71,7 +70,6 @@ module.exports = {
                         backwards.on('collect', (r, u) => {
                             if (page === 1) return r.users.remove(r.users.cache.filter(u => u === message.author).first())
                             page--
-                            m = `${pages[page]} \n Page ${page} of ${pages.length}`;
                             msg.edit(pages[page]);
                             r.users.remove(r.users.cache.filter(u => u === message.author).first())
                         });
@@ -79,20 +77,16 @@ module.exports = {
                         forwards.on('collect', (r, u) => {
                             if (page === pages.length) return r.users.remove(r.users.cache.filter(u => u === message.author).first())
                             page++
-                            m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
                             msg.edit(pages[page]);
                             r.users.remove(r.users.cache.filter(u => u === message.author).first());
                         });
                     })
                 });
-                
             } catch(e) {
                 console.log(e);
                 message.channel.send(`Termenul ${term} nu există în niciun dicționar.`);
             }
         }
-        
-        foo();
-        
+        foo();   
     }
 };

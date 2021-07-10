@@ -4,6 +4,9 @@ const googleIt = require('google-it');
 
 let paginate = false;
 
+const backArrowEmoji = '⬅';
+const forwardArrowEmoji = '➡';
+
 module.exports = {
 	name: 'google',
 	description: 'search on google',

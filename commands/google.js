@@ -52,6 +52,7 @@ module.exports = {
 					.setTimestamp()
 					.setFooter(`mBot ${config['version']}`, config.botAvatar);
 				});
+				console.log('pages[0]: ' + pages[0]);
 				// message.channel.send(embed);
 			}).catch(e => {
 				console.log('[ERROR] ' + e);

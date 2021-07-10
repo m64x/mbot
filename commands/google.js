@@ -41,66 +41,70 @@ module.exports = {
 			let pages = [];
 			let page = 0;
 
-			googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
-				results.forEach(function(item, index) {
-					pages[index] = new MessageEmbed()
-					.setColor(config.embedColor)
-					.setTitle('#' + index)
-					.setAuthor('mBot', config.botAvatar, config.repository)
-					.addField(item.title, item.link)
-					.setDescription()
-					.setTimestamp()
-					.setFooter(`mBot ${config['version']}`, config.botAvatar);
+			try {
+				googleIt({'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com'}).then(results => {
+					results.forEach(function(item, index) {
+						pages[index] = new MessageEmbed()
+						.setColor(config.embedColor)
+						.setTitle('#' + index)
+						.setAuthor('mBot', config.botAvatar, config.repository)
+						.addField(item.title, item.link)
+						.setDescription()
+						.setTimestamp()
+						.setFooter(`mBot ${config['version']}`, config.botAvatar);
+					});
+					console.log('pages[0]: ' + pages[0]);
+					// message.channel.send(embed);
+				}).catch(e => {
+					console.log('[ERROR] ' + e);
 				});
-				console.log('pages[0]: ' + pages[0]);
-				// message.channel.send(embed);
-			}).catch(e => {
-				console.log('[ERROR] ' + e);
-			});
-			
-			console.log(JSON.stringify(pages[0]));
-
-			// for (i = 0; i < 10; i++) {
-			// pages[i] = new MessageEmbed()
-			// .setColor(config.embedColor)
-			// .setTitle('Search results for `' + args.join(' ') + '`')
-			// .setAuthor('mBot', config.botAvatar, config.repository)
-			// .setDescription()
-			// .setTimestamp()
-			// .setFooter(`mBot ${config['version']}`, config.botAvatar);
-			// }
-			
-			let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
-			
-			message.channel.send(pages[0]).then(msg => {
-				msg.react(backArrowEmoji);
-				msg.react(forwardArrowEmoji).then(r => {
-					
-					// Filters. off:  && user.id === message.author.id
-					// const backwardsFilter = (reaction, user) => reaction.emoji.name === '⬅';
-					const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
-					const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
-					const backwards = msg.createReactionCollector(backwardsFilter, { timer: 6000 });
-					const forwards = msg.createReactionCollector(forwardsFilter, { timer: 6000 });
-					
-					backwards.on('collect', (r, u) => {
-						if (page === 1) return r.users.remove(r.users.cache.filter(u => u === message.author).first())
-						page--
-						m = `${pages[page - 1]} \n Page ${page} of ${pages.length}`;
-						msg.edit(pages[page]);
-						r.users.remove(r.users.cache.filter(u => u === message.author).first())
-					});
-					
-					forwards.on('collect', (r, u) => {
-						if (page === pages.length) return r.users.remove(r.users.cache.filter(u => u === message.author).first())
-						page++
-						m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
-						msg.edit(pages[page-1]);
-						r.users.remove(r.users.cache.filter(u => u === message.author).first());
-					});
-				})
-			});
-		}
+				
+				console.log(JSON.stringify(pages[0]));
+	
+				// for (i = 0; i < 10; i++) {
+				// pages[i] = new MessageEmbed()
+				// .setColor(config.embedColor)
+				// .setTitle('Search results for `' + args.join(' ') + '`')
+				// .setAuthor('mBot', config.botAvatar, config.repository)
+				// .setDescription()
+				// .setTimestamp()
+				// .setFooter(`mBot ${config['version']}`, config.botAvatar);
+				// }
+				
+				let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
+				
+				message.channel.send(pages[0]).then(msg => {
+					msg.react(backArrowEmoji);
+					msg.react(forwardArrowEmoji).then(r => {
+						
+						// Filters. off:  && user.id === message.author.id
+						// const backwardsFilter = (reaction, user) => reaction.emoji.name === '⬅';
+						const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
+						const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
+						const backwards = msg.createReactionCollector(backwardsFilter, { timer: 6000 });
+						const forwards = msg.createReactionCollector(forwardsFilter, { timer: 6000 });
+						
+						backwards.on('collect', (r, u) => {
+							if (page === 1) return r.users.remove(r.users.cache.filter(u => u === message.author).first())
+							page--
+							m = `${pages[page - 1]} \n Page ${page} of ${pages.length}`;
+							msg.edit(pages[page]);
+							r.users.remove(r.users.cache.filter(u => u === message.author).first())
+						});
+						
+						forwards.on('collect', (r, u) => {
+							if (page === pages.length) return r.users.remove(r.users.cache.filter(u => u === message.author).first())
+							page++
+							m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
+							msg.edit(pages[page-1]);
+							r.users.remove(r.users.cache.filter(u => u === message.author).first());
+						});
+					})
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		} // else(pagination)
 		
 	}
 };

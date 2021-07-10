@@ -48,21 +48,26 @@ module.exports = {
 				try {
 					await googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 						results.forEach(function (item, index) {
-							x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
+							x[index] = {
+								"title": item.title,
+								"link": item.link,
+								"snippet": item.snippet
+							};
+							// x[index] = [item.title, item.link, item.snippet];
+							// x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
 							console.log('obj: ' + x[index]);
 						});
 						
 						for (i = 0; i < x.length; i++) {
 							pages[i] = new MessageEmbed()
 							.setColor(config.embedColor)
-							.setTitle(`# ${i}`)
+							.setTitle(`#${i}. ${x[i].title}`)
 							.setAuthor('mBot', config.botAvatar, config.repository)
-							.setDescription(x[i])
+							.setDescription(x[i].snippet)
+							.addField('Link', x[i].link, true)
 							.setTimestamp()
 							.setFooter(`mBot ${config.version}`, config.botAvatar);
 						}
-						
-						let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
 						
 						message.channel.send(`Search results for \`${args.join(' ')}\`:`);
 						
@@ -79,7 +84,6 @@ module.exports = {
 										return r.users.remove(r.users.cache.filter(u => u === message.author).first());
 									}
 									page--;
-									m = `${pages[page]} \n Page ${page} of ${pages.length}`;
 									msg.edit(pages[page]);
 									r.users.remove(r.users.cache.filter(u => u === message.author).first());
 								});
@@ -89,7 +93,6 @@ module.exports = {
 										return r.users.remove(r.users.cache.filter(u => u === message.author).first());
 									}
 									page++;
-									m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
 									msg.edit(pages[page]);
 									r.users.remove(r.users.cache.filter(u => u === message.author).first());
 								});

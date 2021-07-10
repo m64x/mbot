@@ -41,7 +41,6 @@ module.exports = {
                 }
                 
                 let pages = [];
-                let def = 
                 
                 for (i = 0; i < 5; i++) {
                     let def = result.definitions[i].internalRep.replace(/#|@|$/g, '');

@@ -34,8 +34,6 @@ module.exports = {
                     return;
                 }
                 
-                f.debug(result.definitions[0].internalRep);
-                
                 const definitionsCount = result.definitions.length;
                 
                 if (definitionsCount) {
@@ -43,13 +41,15 @@ module.exports = {
                 }
                 
                 let pages = [];
+                let def = 
                 
                 for (i = 0; i < 5; i++) {
+                    let def = result.definitions[i].internalRep.replace(/#|@|$/g, '');
                     pages[i] = new MessageEmbed()
                     .setColor(config.embedColor)
                     .setTitle(`Definiția termenului **${term}**. ${i + 1}/5`)
                     .setAuthor(config.name, config.avatar)
-                    .setDescription(result.definitions[i].internalRep.replace(/#|@|$/g,''))
+                    .setDescription(def)
                     .addField('Dicționar', result.definitions[i].sourceName, true)
                     .setTimestamp()
                     .setFooter(`${config.name} ${config.version}`, config.avatar);

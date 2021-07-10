@@ -7,9 +7,6 @@ const paginationEmbed = require('discord.js-pagination');
 const { MessageEmbed } = require('discord.js');
 const Pagination = require('discord-paginationembed');
 
-const backArrowEmoji = '⬅';
-const forwardArrowEmoji = '➡';
-
 module.exports = {
     name: 'dex',
     aliases: ['dexonline', 'dictionar'],
@@ -58,20 +55,16 @@ module.exports = {
                     .setFooter('mBot v0.1.0', 'https://i.imgur.com/wSTFkRM.png');
                 }
                 
-                // let page = 1;
-                // let m = `${pages[page - 1]} \n Page ${page} of ${pages.length}.`;
-                
                 let page = 0;
                 let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;
                 
                 message.channel.send(pages[0]).then(msg => {
-                    msg.react(backArrowEmoji);
-                    msg.react(forwardArrowEmoji).then(r => {
-                        
+                    msg.react(config.backEmoji);
+                    msg.react(config.forwardEmoji).then(r => {
                         // Filters. off:  && user.id === message.author.id
                         // const backwardsFilter = (reaction, user) => reaction.emoji.name === '⬅';
-                        const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
-                        const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
+                        const backwardsFilter = (reaction) => reaction.emoji.name === config.backEmoji;
+                        const forwardsFilter = (reaction) => reaction.emoji.name === config.forwardEmoji;
                         const backwards = msg.createReactionCollector(backwardsFilter, { timer: 6000 });
                         const forwards = msg.createReactionCollector(forwardsFilter, { timer: 6000 });
                         

@@ -4,9 +4,6 @@ const googleIt = require('google-it');
 
 let paginate = false;
 
-const backArrowEmoji = '⬅';
-const forwardArrowEmoji = '➡';
-
 module.exports = {
 	name: 'google',
 	description: 'search on google',
@@ -25,11 +22,10 @@ module.exports = {
 		if (!paginate) {
 			let embed = new MessageEmbed()
 			.setColor('#0099ff')
-			.setTitle('Search results for `' + args.join(' ') + '`')
-			.setAuthor('mBot', config.botAvatar, config.repository)
-			.setDescription()
+			.setTitle('Search results for `' + args.join(' ') + '`:')
+			.setAuthor('mBot', config.avatar, config.repository)
 			.setTimestamp()
-			.setFooter(`mBot ${config.version}`, config.botAvatar);
+			.setFooter(`mBot ${config.version}`, config.avatar);
 			
 			googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 				results.forEach(function (item, index) {
@@ -42,7 +38,7 @@ module.exports = {
 			
 			return;
 		}
-
+		
 		let pages = [];
 		let page = 0;
 		let x = [];
@@ -64,20 +60,20 @@ module.exports = {
 						pages[i] = new MessageEmbed()
 						.setColor(config.embedColor)
 						.setTitle(`#${i}. ${x[i].title}`)
-						.setAuthor('mBot', config.botAvatar, config.repository)
+						.setAuthor('mBot', config.avatar, config.repository)
 						.setDescription(x[i].snippet)
 						.addField('Link', x[i].link, true)
 						.setTimestamp()
-						.setFooter(`mBot ${config.version}`, config.botAvatar);
+						.setFooter(`mBot ${config.version}`, config.avatar);
 					}
 					
 					message.channel.send(`Search results for \`${args.join(' ')}\`:`);
 					
 					message.channel.send(pages[0]).then(msg => {
-						msg.react(backArrowEmoji);
-						msg.react(forwardArrowEmoji).then(r => {
-							const backwardsFilter = (reaction) => reaction.emoji.name === backArrowEmoji;
-							const forwardsFilter = (reaction) => reaction.emoji.name === forwardArrowEmoji;
+						msg.react(config.backEmoji);
+						msg.react(config.forwardEmoji).then(r => {
+							const backwardsFilter = (reaction) => reaction.emoji.name === config.backEmoji;
+							const forwardsFilter = (reaction) => reaction.emoji.name === config.forwardEmoji;
 							const backwards = msg.createReactionCollector(backwardsFilter, { timer: 60000 });
 							const forwards = msg.createReactionCollector(forwardsFilter, { timer: 60000 });
 							
@@ -106,6 +102,5 @@ module.exports = {
 			}
 		}
 		foo();
-		// else(pagination)
 	}
 }

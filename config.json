@@ -3,6 +3,8 @@
 	"version": "0.1.0",
 	"embedColor": "#0099ff",
 	"debugMode": "on",
-	"botAvatar": "https://i.imgur.com/4FuW9or.png",
-	"repository": "https://github.com/m64x/mbot"
+	"avatar": "https://i.imgur.com/4FuW9or.png",
+	"repository": "https://github.com/m64x/mbot",
+	"backEmoji": "⬅",
+	"forwardEmoji": "➡"
 }

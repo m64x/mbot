@@ -52,7 +52,7 @@ module.exports = {
 						for (i = 0; i < x.length; i++) {
 							pages[i] = new MessageEmbed()
 							.setColor(config.embedColor)
-							.setTitle(`# ${index}`)
+							.setTitle(`# ${i}`)
 							.setAuthor('mBot', config.botAvatar, config.repository)
 							.setDescription(x[i])
 							.addField('test', 'test2')

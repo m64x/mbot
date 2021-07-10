@@ -44,7 +44,7 @@ module.exports = {
 			try {
 				googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 					results.forEach(function (item, index) {
-						x[index] = item.title + " | " + item.link;
+						x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
 						console.log('obj: ' + x[index]);
 					}).catch(e => {
 						console.log('[ERROR] ' + e);

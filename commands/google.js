@@ -48,8 +48,7 @@ module.exports = {
 						.setColor(config.embedColor)
 						.setTitle('#' + index)
 						.setAuthor('mBot', config.botAvatar, config.repository)
-						.addField(item.title, item.link)
-						.setDescription()
+						.setDescription(`${item.title}\n ${item.link}\n ${item.snippet}`)
 						.setTimestamp()
 						.setFooter(`mBot ${config['version']}`, config.botAvatar);
 					});

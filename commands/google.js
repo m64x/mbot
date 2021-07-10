@@ -60,9 +60,9 @@ module.exports = {
 						pages[i] = new MessageEmbed()
 						.setColor(config.embedColor)
 						.setTitle(`#${i}. ${x[i].title}`)
+						.setURL(x[i].link)
 						.setAuthor('mBot', config.avatar, config.repository)
 						.setDescription(x[i].snippet)
-						.addField('Link', x[i].link, true)
 						.setTimestamp()
 						.setFooter(`mBot ${config.version}`, config.avatar);
 					}

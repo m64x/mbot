@@ -56,6 +56,7 @@ module.exports = {
 						.setTitle(`# ${index}`)
 						.setAuthor('mBot', botAvatar, repository)
 						.setDescription(x[i])
+						.addField('test', 'test2')
 						.setTimestamp()
 						.setFooter(`mBot ${config['version']}`, botAvatar);
 					}

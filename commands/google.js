@@ -57,6 +57,8 @@ module.exports = {
 				console.log('[ERROR] ' + e);
 			});
 			
+			console.log(pages[0]);
+
 			// for (i = 0; i < 10; i++) {
 			// pages[i] = new MessageEmbed()
 			// .setColor(config.embedColor)

@@ -43,7 +43,7 @@ module.exports = {
 			
 			async function foo() {
 				try {
-					googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
+					await googleIt({ 'query': args.join(" "), 'disableConsole': true, 'excludeSites': 'youtube.com' }).then(results => {
 						results.forEach(function (item, index) {
 							x[index] = `${item.title} \n ${item.link} \n ${item.snippet}`;
 							console.log('obj: ' + x[index]);

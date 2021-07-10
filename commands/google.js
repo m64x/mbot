@@ -2,8 +2,6 @@ const config = require('../config.json');
 const { MessageEmbed } = require('discord.js');
 const googleIt = require('google-it');
 
-let paginate = false;
-
 module.exports = {
 	name: 'google',
 	description: 'search on google',
@@ -13,14 +11,10 @@ module.exports = {
 	cooldown: 4,
 	execute(message, args) {	
 		console.log(args);
-		if (args.length > 1) {
-			if (args[0] === '!p') {
-				paginate = true;
-				args.shift();
-			}
-		}
-		
-		if (!paginate) {
+
+		if (!args.length > 1 && args[0] !== '!p') {
+			args.shift();
+
 			let embed = new MessageEmbed()
 			.setColor('#0099ff')
 			.setTitle('Search results for `' + args.join(' ') + '`:')

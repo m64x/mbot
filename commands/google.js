@@ -51,13 +51,13 @@ module.exports = {
 						
 						for (i = 0; i < x.length; i++) {
 							pages[i] = new MessageEmbed()
-							.setColor(embedColor)
+							.setColor(config.embedColor)
 							.setTitle(`# ${index}`)
-							.setAuthor('mBot', botAvatar, repository)
+							.setAuthor('mBot', config.botAvatar, config.repository)
 							.setDescription(x[i])
 							.addField('test', 'test2')
 							.setTimestamp()
-							.setFooter(`mBot ${config['version']}`, botAvatar);
+							.setFooter(`mBot ${config.version}`, config.botAvatar);
 						}
 						
 						let m = `${pages[page]} \n Page ${page} of ${pages.length}.`;

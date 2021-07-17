@@ -1,9 +1,6 @@
 const axios = require('axios');
 const { MessageEmbed } = require('discord.js');
-
-if (!timer) {
-	var timer = [];
-}
+const config = require('../config.json');
 
 module.exports = {
 	name: 'crypto',
@@ -13,9 +10,6 @@ module.exports = {
 	cooldown: 10,
 	usage: '<criptomoneda> ?<moneda conversie (default = usd)> ',
 	execute(message, args) {
-		let id = message.channel.id;
-		let repeat;
-		const minRepeat = 10;
 		const apikey = process.env['CRYPTO_KEY'];
 		let url;
 		
@@ -23,16 +17,9 @@ module.exports = {
 			url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?CMC_PRO_API_KEY=${apikey}&symbol=${args[0]}`;
 		} else if (args.length === 2) {
 			url = `https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest?CMC_PRO_API_KEY=${apikey}&symbol=${args[0]}&convert=${args[1]}`;
-		} else {
-			
 		}
-		
 		const messages = {
 			notFound: 'Nu există această monedă.'
-		};
-		
-		const plural = (termSingular, termPlural, count) => {
-			return count === 1 ? `${count} ${termSingular}` : `${count} ${termPlural}`;
 		};
 		
 		const isNumeric = (string) => {
@@ -59,7 +46,7 @@ module.exports = {
 				let upDown7dEmoji = datax.percent_change_7d.toFixed(2) > 0 ? "⬆" : "⬇";
 				let msg1 = `1 ${args[0].toUpperCase()} = ${x} ${moneda}\n
 				24h: ${upDown24hEmoji} ${datax.percent_change_24h.toFixed(2)} %\n 7 zile: ${upDown7dEmoji} ${datax.percent_change_7d.toFixed(2)} %`;
-
+				
 				const embed = new MessageEmbed()
 				.setColor(config.embedColor)
 				.setTitle(`1 ${args[0].toUpperCase()} equals:`)
@@ -69,7 +56,7 @@ module.exports = {
 				.addField('7d change', `${upDown7dEmoji} ${datax.percent_change_7d.toFixed(2)}%`, true)
 				.setTimestamp()
 				.setFooter(`${config.name} ${config.version}`, config.avatar);
-
+				
 				message.channel.send(embed);
 			} catch (e) {
 				console.log(e);

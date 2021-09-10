@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 app.get('/', (req, res) => res.send(('x'.repeat(15) + '<br>').repeat(3)));
@@ -87,4 +89,4 @@ setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
   }
 });
 
-client.login(process.env['discord_token']);
+client.login(process.env.discord_token);

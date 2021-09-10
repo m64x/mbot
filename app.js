@@ -26,7 +26,7 @@ const cooldowns = new Collection();
 client.once('ready', () => {
   console.log('The bot is ready!');
 
-  client.user.setAvatar('https://i.imgur.com/4FuW9or.png');
+  // client.user.setAvatar('https://i.imgur.com/4FuW9or.png');
 
   client.user.setPresence({
     status: 'online',

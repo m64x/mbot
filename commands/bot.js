@@ -1,5 +1,6 @@
 const fs = require('fs');
 let config = JSON.parse(fs.readFileSync("./config.json"));
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
   name: 'bot',
@@ -17,6 +18,24 @@ module.exports = {
 
       return author === admin;
     };
+
+
+
+    let ram = process.memoryUsage().heapUsed / 1024 / 1024;
+
+
+    if (args[0] === 'stats') {
+      const embed = new MessageEmbed()
+      .setColor(config.embedColor)
+      .setTitle(`mBot stats`)
+      .setAuthor(config.name, config.avatar)
+      .setDescription(`${ram.toFixed(2)} MB RAM usage`)
+      // .addField('regex wtf', process.version.match(/^v(\d+\.\d+)/)[1], true)
+      .setTimestamp()
+      .setFooter(`${config.name} ${config.version}`, config.avatar);
+
+      message.channel.send(embed);
+    }
 
     if (args[0] === 'version') {
       // Get bot version

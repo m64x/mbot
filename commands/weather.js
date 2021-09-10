@@ -16,7 +16,7 @@ module.exports = {
 		}
 		
 		const city = args.join(' ');
-		const key = process.env['weather_key'];
+		const key = process.env.WEATHER_KEY;
 		const units = 'metric';
 		const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${key}`;
 		

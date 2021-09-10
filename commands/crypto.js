@@ -10,7 +10,7 @@ module.exports = {
 	cooldown: 10,
 	usage: '<criptomoneda> ?<moneda conversie (default = usd)> ',
 	execute(message, args) {
-		const apikey = process.env['CRYPTO_KEY'];
+		const apikey = process.env.CRYPTO_KEY;
 		let url;
 		
 		if (args.length === 1) {

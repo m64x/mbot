@@ -2,10 +2,7 @@ const fetch = require('node-fetch');
 const config = require('../config.json');
 
 const f = require('../functions');
-
-const paginationEmbed = require('discord.js-pagination');
 const { MessageEmbed } = require('discord.js');
-const Pagination = require('discord-paginationembed');
 
 module.exports = {
     name: 'dex',

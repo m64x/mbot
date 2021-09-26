@@ -8,7 +8,7 @@ module.exports = {
 	description: 'news from nytimes',
 	execute(message) {
 		
-		const apikey = process.env.nytimes;
+		const apikey = process.env.NYTIMES;
 		const url = `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=${apikey}`;
 		
 		async function foo() {

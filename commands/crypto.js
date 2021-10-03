@@ -4,7 +4,7 @@ const config = require('../config.json');
 
 module.exports = {
 	name: 'crypto',
-	aliases: ['cripto'],
+	aliases: ['cripto', 'c'],
 	description: 'get cripto price',
 	args: true,
 	cooldown: 10,

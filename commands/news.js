@@ -5,7 +5,7 @@ const config = require('../config.json');
 module.exports = {
 	name: 'news',
 	aliases: ['n'],
-	description: 'news from nytimes',
+	description: 'news from nytimes.',
 	execute(message) {
 		
 		const apikey = process.env.NYTIMES;

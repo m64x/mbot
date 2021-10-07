@@ -36,7 +36,7 @@ module.exports = {
 				const result = await axios.get(url);
 				const data = result.data.data[args[0].toUpperCase()];
 				console.log(url);
-				console.log(result);l
+				console.log(result);
 				datax = args[1] ? data.quote[args[1].toUpperCase()] : data.quote.USD;
 				let x = datax.price;
 				x = x.toFixed(9);

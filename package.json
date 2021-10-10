@@ -21,8 +21,9 @@
     "google": "^2.1.0",
     "google-it": "^1.6.2",
     "googleapis": "^66.0.0",
-    "node-fetch": "^2.6.2",
+    "node-fetch": "^2.6.5",
     "puppeteer": "^10.4.0",
+    "rss-parser": "^3.12.0",
     "simple-youtube-api": "^5.2.1"
   }
 }

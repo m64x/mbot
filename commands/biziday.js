@@ -22,7 +22,7 @@ module.exports = {
                 let embed = new MessageEmbed()
                 .setColor(config.embedColor)
                 .setTitle(feed.title)
-                .setImage(feed.image.url)
+                .setThumbnail(feed.image.url)
                 .setAuthor(config.name, config.avatar)
                 .setDescription(`${feed.description}`)
                 .setTimestamp()

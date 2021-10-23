@@ -27,20 +27,40 @@ module.exports = {
 			return !isNaN(string) && !isNaN(parseFloat(string));      
 		};
 		
-		function numberWithSeparators(number, separator) {
-			return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
-		}
-		
+
+		function toFixxed(x) {
+			if (Math.abs(x) < 1.0) {
+			  var e = parseInt(x.toString().split('e-')[1]);
+			  if (e) {
+				  x *= Math.pow(10,e-1);
+				  x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+			  }
+			} else {
+			  var e = parseInt(x.toString().split('+')[1]);
+			  if (e > 20) {
+				  e -= 20;
+				  x /= Math.pow(10,e);
+				  x += (new Array(e+1)).join('0');
+			  }
+			}
+			return x;
+		  }
+		  
+
 		async function foo() {
 			try {
 				const result = await axios.get(url);
 				const data = result.data.data[args[0].toUpperCase()];
-				console.log(url);
-				console.log(result);
 				datax = args[1] ? data.quote[args[1].toUpperCase()] : data.quote.USD;
 				let x = datax.price;
-				x = x.toFixed(9);
-				x = numberWithSeparators(x, ',');
+
+				if (x >= 0.01) {
+					x = x.toFixed(2);
+					x = Number(x).toLocaleString('en');
+				} else {
+					x = toFixxed(x);
+				}
+
 				let moneda = args[1] ? args[1].toUpperCase() : 'USD';
 				let upDown24hEmoji = datax.percent_change_24h.toFixed(2) > 0 ? "⬆" : "⬇";
 				let upDown7dEmoji = datax.percent_change_7d.toFixed(2) > 0 ? "⬆" : "⬇";

@@ -31,19 +31,25 @@ module.exports = {
                     return;
                 }
                 
+                // console.log(result.definitions[0].internalRep);
+                // message.channel.send(result.definitions[0].internalRep);
+
                 const definitionsCount = result.definitions.length;
                 
                 if (definitionsCount) {
-                    message.channel.send('Există un număr de **' + definitionsCount + ' definitii** pentru termenul **' + term + '**.');
+                    message.channel.send('Există un număr de **' + definitionsCount + ' definiții** pentru termenul **' + term + '**.');
                 }
                 
                 let pages = [];
+
+                // let resultsCount = definitionsCount > 5 ? 5 : definitionsCount;
                 
-                for (i = 0; i < 5; i++) {
-                    let def = result.definitions[i].internalRep.replace(/#|@|$/g, '');
+                for (i = 0; i < definitionsCount; i++) {
+                    // let def = result.definitions[i].internalRep.replace(/#|@|$/g, '');
+                    let def = result.definitions[i].internalRep.replace(/[|&;$%@#"<>()+,]/g, ' ');
                     pages[i] = new MessageEmbed()
                     .setColor(config.embedColor)
-                    .setTitle(`Definiția termenului **${term}**. ${i + 1}/5`)
+                    .setTitle(`Definiția termenului **${term}**. ${i + 1}/${definitionsCount}`)
                     .setAuthor(config.name, config.avatar)
                     .setDescription(def)
                     .addField('Dicționar', result.definitions[i].sourceName, true)

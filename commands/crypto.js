@@ -21,7 +21,7 @@ module.exports = {
 		const messages = {
 			notFound: 'Nu există această monedă.'
 		};
-		
+
 		const isNumeric = (string) => {
 			if (typeof string != "string") return false;
 			return !isNaN(string) && !isNaN(parseFloat(string));      

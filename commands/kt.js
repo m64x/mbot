@@ -25,7 +25,7 @@ const kt = [
 module.exports = {
 	name: 'kt',
 	description: 'jos ranga',
-  cooldown: 10,
+  cooldown: 5,
 	execute(message, args) {
     message.channel.send(kt[Math.floor(Math.random() * kt.length)]);
 	}

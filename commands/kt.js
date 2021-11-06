@@ -15,7 +15,11 @@ const kt = [
   'https://i.ytimg.com/vi/RhluS3_dIS0/maxresdefault.jpg',
   'https://i.ytimg.com/vi/sr3H2G7DEpw/maxresdefault.jpg',
   'https://i.ytimg.com/vi/NXqGVIylHwY/maxresdefault.jpg',
-  'https://i.ytimg.com/vi/N61u3Ugom8I/maxresdefault.jpg'
+  'https://i.ytimg.com/vi/N61u3Ugom8I/maxresdefault.jpg',
+  'https://i.ytimg.com/vi/nxqJnz210fg/hqdefault.jpg',
+  'https://i.ytimg.com/vi/9FfPucGHVow/maxresdefault.jpg',
+  'https://i.ytimg.com/vi/lbM1-pW3NO4/maxresdefault.jpg',
+  'https://i.ytimg.com/vi/8PHCE7l4EOw/maxresdefault.jpg'
 ];
 
 module.exports = {

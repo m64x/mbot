@@ -11,7 +11,8 @@ const kt = [
   'https://i.imgur.com/drNpGgG.gif',
   'https://i.imgur.com/fpFguvU.gif',
   'https://i.imgur.com/0Lpj0Lz.gif',
-  'https://i.imgur.com/1JISkGa.gif'
+  'https://i.imgur.com/1JISkGa.gif',
+  'https://i.ytimg.com/vi/RhluS3_dIS0/maxresdefault.jpg'
 ];
 
 module.exports = {

@@ -7,5 +7,9 @@ module.exports = {
 		return;
 	}
 		console.log('[DEBUG] ' + stuff);
-   }
+   },
+
+   isAdmin: (userID) => {
+	   return userID === config.adminID
+	}
 }

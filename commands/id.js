@@ -1,14 +1,13 @@
+const config = require('../config.json');
+const functions = require('../functions');
+
 module.exports = {
     name: 'id',
     description: 'get user id',
-    execute(client, message, args) {
-        // let x = client.users.cache.find(u => u.tag === 'Mădălin#8114').id
+    execute(message, args) {
+        let userID = message.author.id;
+        let adminID = config.adminID;
 
-        // message.channel.send(x || typeof x);
-
-        message.guild.members.forEach(member => {
-            console.log(member);
-            message.channel.send(member.id);
-        });
+        message.channel.send(functions.isAdmin(userID));
     }
 };

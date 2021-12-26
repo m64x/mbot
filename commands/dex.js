@@ -46,7 +46,8 @@ module.exports = {
                 
                 for (i = 0; i < definitionsCount; i++) {
                     // let def = result.definitions[i].internalRep.replace(/#|@|$/g, '');
-                    let def = result.definitions[i].internalRep.replace(/[|&;$%@#"<>()+,]/g, ' ');
+                    //let def = result.definitions[i].internalRep.replace(/[|&;$%@#"<>()+,]/g, ' ');
+                    let def = result.definitions[i].internalRep;
                     pages[i] = new MessageEmbed()
                     .setColor(config.embedColor)
                     .setTitle(`Definiția termenului **${term}**. ${i + 1}/${definitionsCount}`)
